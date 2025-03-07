@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Add scroll animations with intersection observer
     const sections = document.querySelectorAll('section');
-    const observerOptions = {
+    const sectionObserverOptions = {
         threshold: 0.2,
         rootMargin: '0px'
     };
@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
         });
-    }, observerOptions);
+    }, sectionObserverOptions);
 
     sections.forEach(section => sectionObserver.observe(section));
 
