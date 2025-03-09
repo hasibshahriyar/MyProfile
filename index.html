@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +8,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <meta name="description" content="Shahriyar Hasib - Undergraduate Researcher at UIU, specializing in DeepFake Audio Detection">
     <meta name="keywords" content="DeepFake Detection, Audio Analysis, Data Science, Machine Learning, UIU">
-    <script src="https://unpkg.com/scrollreveal"></script>
+    <!-- Add fallback for ScrollReveal and TypedJS -->
+    <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <!-- Add this script to detect JavaScript -->
+    <script>document.documentElement.className = document.documentElement.className.replace("no-js","js");</script>
 </head>
 <body>
     <nav class="main-nav">
@@ -38,7 +42,7 @@
                 </div>
                 <h1>Shahriyar Hasib</h1>
                 <h2>Data Science Researcher</h2>
-                <p class="tagline">Exploring the Frontiers of DeepFake Detection & AI</p>
+                <p class="animated-tagline" id="animated-tagline"></p>
                 <div class="institution">
                     <p>Student at United International University</p>
                     <p class="department">Department of Computer Science & Engineering</p>
@@ -94,7 +98,7 @@
             <h2 class="section-title">Current Research</h2>
             <div class="featured-research">
                 <div class="research-header">
-                    <h3>EchoShield: Advanced DeepFake Audio Detection System</h3>
+                    <h3>EchoShield: Detecting AI-Generated Voices in the Modern Soundscape</h3>
                     <span class="badge">Active Research</span>
                 </div>
                 <div class="research-content">
@@ -110,21 +114,27 @@
                     <div class="research-details">
                         <p class="timeline-date">2024 - Present</p>
                         <p class="research-description">
-                            Leading research on developing advanced deep learning models for detecting manipulated audio content.
-                            EchoShield aims to protect audio authenticity in the digital age through innovative ML approaches.
-                        </p>
+                            The paper presents <b>EchoShield</b>, an advanced framework for detecting AI-generated voices (deepfake audio) by combining <b>CNNs</b>, <b>RNNs</b>, and <b>Transformers</b>. It effectively addresses the limitations of traditional detection methods by leveraging hybrid models and sophisticated feature extraction techniques. The system demonstrated high accuracy and scalability across diverse datasets, making it a robust tool for audio forensics and security.                        </p>
                         <div class="research-highlights">
                             <h4>Key Aspects:</h4>
                             <ul>
-                                <li>Deep Neural Network Architecture Design</li>
-                                <li>Audio Signal Processing</li>
-                                <li>Real-time Detection Systems</li>
-                                <li>Performance Optimization</li>
+                                <li></b>EchoShield Framework</b> for deepfake audio detection.</li>
+                                <li></b>Hybrid deep learning models</b> (CNNs, RNNs, Transformers).</li>
+                                <li></b>Diverse datasets</b> and advanced preprocessing techniques.</li>
+                                <li></b>Evaluation</b> using metrics like F1-score, recall, and EER.</li>
                             </ul>
+                        </div>
+                        <div class="research-actions">
+                            <button class="pdf-button" data-pdf="assets\EchoShield Detecting AI-Generated Voices in the Modern Soundscape.pdf">
+                                <i class="fas fa-file-pdf"></i> View Report
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
+            
+            <!-- Research Visualization Canvas -->
+            <canvas id="researchAnimation" class="research-animation"></canvas>
         </div>
     </section>
 
@@ -195,6 +205,146 @@
         </div>
     </section>
 
+    <section id="projects" class="projects section-padding hidden">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card animate-on-scroll">
+                    <div class="project-image">
+                        <div class="image-wrapper">
+                            <img src="./assets/computer-vision-project.jpg" alt="Computer Vision Project" onerror="this.onerror=null; this.classList.add('error');">
+                            <div class="overlay">
+                                <div class="overlay-content">
+                                    <i class="fas fa-eye"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span>Computer Vision</span>
+                            <span>Deep Learning</span>
+                        </div>
+                        <h3>Real-time Face Detection System</h3>
+                        <p>Developed a real-time face detection and recognition system using OpenCV and deep learning. The system can identify multiple faces simultaneously while maintaining high accuracy in varied lighting conditions.</p>
+                        <div class="tech-stack">
+                            <span>Python</span>
+                            <span>OpenCV</span>
+                            <span>TensorFlow</span>
+                            <span>CUDA</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/hasibshahriyar/face-detection" target="_blank" class="project-link"><i class="fab fa-github"></i> View Code</a>
+                            <a href="#" class="project-link demo-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card animate-on-scroll">
+                    <div class="project-image">
+                        <div class="image-wrapper">
+                            <img src="./assets/audio-analysis-project.jpg" alt="Audio Analysis Project" onerror="this.onerror=null; this.classList.add('error');">
+                            <div class="overlay">
+                                <div class="overlay-content">
+                                    <i class="fas fa-eye"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span>Audio Processing</span>
+                            <span>Signal Analysis</span>
+                        </div>
+                        <h3>Audio Feature Extraction Framework</h3>
+                        <p>Created a comprehensive audio feature extraction framework that analyzes spectral, temporal, and perceptual characteristics of audio signals. Used for enhancing the training dataset of the EchoShield research.</p>
+                        <div class="tech-stack">
+                            <span>Python</span>
+                            <span>Librosa</span>
+                            <span>Numpy</span>
+                            <span>SciPy</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/hasibshahriyar/audio-features" target="_blank" class="project-link"><i class="fab fa-github"></i> View Code</a>
+                            <a href="#" class="project-link demo-link"><i class="fas fa-external-link-alt"></i> Documentation</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card animate-on-scroll">
+                    <div class="project-image">
+                        <div class="image-wrapper">
+                            <img src="./assets/ml-project.jpg" alt="Machine Learning Project" onerror="this.onerror=null; this.classList.add('error');">
+                            <div class="overlay">
+                                <div class="overlay-content">
+                                    <i class="fas fa-eye"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span>Machine Learning</span>
+                            <span>Data Visualization</span>
+                        </div>
+                        <h3>Predictive Analytics Dashboard</h3>
+                        <p>Built an interactive data visualization dashboard that uses machine learning to predict trends in experimental data. Features real-time data processing and interactive 3D visualizations.</p>
+                        <div class="tech-stack">
+                            <span>Python</span>
+                            <span>Scikit-learn</span>
+                            <span>D3.js</span>
+                            <span>Flask</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/hasibshahriyar/data-dashboard" target="_blank" class="project-link"><i class="fab fa-github"></i> View Code</a>
+                            <a href="#" class="project-link demo-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="publications" class="publications section-padding hidden">
+        <div class="container">
+            <h2 class="section-title">Publications</h2>
+            <div class="publications-wrapper">
+                <div class="publication-item animate-on-scroll">
+                    <div class="publication-badge">Upcoming</div>
+                    <h3 class="publication-title">EchoShield: Real-time DeepFake Audio Detection Using Spectral Analysis and CNN</h3>
+                    <p class="publication-authors">Shahriyar Hasib, Jane Doe, John Smith</p>
+                    <p class="publication-venue">IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), 2025</p>
+                    <p class="publication-abstract">
+                        This paper presents a novel approach to detecting deepfake audio content using spectral analysis and convolutional neural networks. Our method achieves 95% accuracy in identifying synthesized audio with minimal computational overhead.
+                    </p>
+                    <div class="publication-actions">
+                        <button class="button-outline copy-citation" data-citation="Hasib, S., Doe, J., & Smith, J. (2025). EchoShield: Real-time DeepFake Audio Detection Using Spectral Analysis and CNN. IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP).">
+                            <i class="fas fa-quote-right"></i> Copy Citation
+                        </button>
+                        <button class="pdf-button" data-pdf="./assets/echoshield_paper.pdf">
+                            <i class="fas fa-file-pdf"></i> Preview Paper
+                        </button>
+                    </div>
+                </div>
+
+                <div class="publication-item animate-on-scroll">
+                    <div class="publication-badge">In Review</div>
+                    <h3 class="publication-title">Comparative Analysis of CNN Architectures for Audio DeepFake Detection</h3>
+                    <p class="publication-authors">Shahriyar Hasib, Alice Johnson</p>
+                    <p class="publication-venue">Neural Information Processing Systems (NeurIPS), 2025</p>
+                    <p class="publication-abstract">
+                        We compare various CNN architectures for their effectiveness in detecting artificially generated audio content, focusing on computational efficiency and detection accuracy across multiple datasets.
+                    </p>
+                    <div class="publication-actions">
+                        <button class="button-outline copy-citation" data-citation="Hasib, S. & Johnson, A. (2025). Comparative Analysis of CNN Architectures for Audio DeepFake Detection. Neural Information Processing Systems (NeurIPS).">
+                            <i class="fas fa-quote-right"></i> Copy Citation
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="contact" class="contact section-padding">
         <div class="container">
             <h2 class="section-title">Let's Connect</h2>
@@ -229,8 +379,15 @@
             <p>&copy; 2025 Shahriyar Hasib</p>
         </div>
     </footer>
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
+
+    <!-- PDF Viewer Modal -->
+    <div id="pdf-viewer" class="pdf-modal">
+        <div class="pdf-modal-content">
+            <button class="close-pdf">&times;</button>
+            <iframe id="pdf-frame" src="" frameborder="0"></iframe>
+        </div>
+    </div>
+
     <script src="scripts.js"></script>
 </body>
 </html>

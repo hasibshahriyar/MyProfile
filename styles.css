@@ -25,6 +25,7 @@ body {
     line-height: 1.6;
     background-color: var(--bg-color);
     color: var(--text-color);
+    /* Removed direct color and red border */
 }
 
 /* Animation keyframes */
@@ -67,6 +68,24 @@ body {
     }
 }
 
+/* Add these new animation keyframes */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-20px); }
+    60% { transform: translateY(-10px); }
+}
+
+@keyframes rotateIn {
+    from { transform: rotate(-10deg) scale(0.8); opacity: 0; }
+    to { transform: rotate(0) scale(1); opacity: 1; }
+}
+
+@keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
 /* Header animations */
 header {
     background: linear-gradient(135deg, #ff5722, #ff9800);
@@ -99,17 +118,17 @@ header p {
 .profile-image {
     width: 200px;  /* Reduced from 250px for better proportion */
     height: 200px;
-    border-radius: 50%;
+    border-radius: 50%;  /* Creates a circular image */
     border: 5px solid #fff;
     box-shadow: 0 0 25px rgba(255, 87, 34, 0.3);
     margin: 20px auto;
     overflow: hidden;
     position: relative;
-    background: #f5f5f5 url('assets/placeholder.png') center/cover;  /* Default background */
+    background: #f5f5f5 url('assets/Background.png') center/cover;  /* Default background */
     display: flex;
     align-items: center;
     justify-content: center;
-    animation: float 6s ease-in-out infinite;
+    animation: bounce 12s ease-in-out infinite, fadeIn 1s ease-out;
 }
 
 .profile-image img {
@@ -198,6 +217,18 @@ footer {
     padding: 10px;
     background-color: var(--primary-color);
     color: white;
+    margin-top: 0; /* Ensure no top margin */
+}
+
+/* Ensure the last section doesn't have bottom margin */
+section:last-of-type {
+    margin-bottom: 0;
+}
+
+/* Fix for the container structure to avoid gaps */
+.container:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
 }
 
 .contact ul {
@@ -323,6 +354,12 @@ footer {
     transform: translateY(20px);
     opacity: 0;
     animation: slideUpFade 0.6s ease forwards;
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.skill-category:hover {
+    transform: translateY(-10px) !important;
+    box-shadow: 0 10px 30px rgba(255, 87, 34, 0.15);
 }
 
 .skill-category h3 {
@@ -542,6 +579,12 @@ footer {
     margin-bottom: 4rem;
     position: relative;
     color: var(--primary-color);
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color), var(--primary-color));
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientFlow 3s linear infinite;
 }
 
 .section-title::after {
@@ -616,4 +659,456 @@ section:hover .section-title::before {
 .key-interests li:hover {
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(255, 87, 34, 0.2);
+}
+
+/* Add new styles for Projects, Publications and PDF viewer */
+
+/* Research animation */
+.research-animation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.1;
+}
+
+/* Projects Section */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.project-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: slideUpFade 0.6s ease forwards;
+    position: relative;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(255, 87, 34, 0.15);
+}
+
+.project-image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.image-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+.project-card:hover .image-wrapper img {
+    transform: scale(1.1);
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 87, 34, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.project-card:hover .overlay {
+    opacity: 1;
+}
+
+.overlay-content i {
+    color: white;
+    font-size: 2rem;
+}
+
+.project-content {
+    padding: 1.5rem;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.project-tags span {
+    background: #f5f5f5;
+    padding: 0.2rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    color: var(--primary-color);
+}
+
+.project-content h3 {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1.5rem 0;
+}
+
+.tech-stack span {
+    background: rgba(255, 87, 34, 0.1);
+    padding: 0.2rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    color: var(--primary-color);
+}
+
+.project-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    justify-content: flex-start;
+}
+
+.project-link {
+    text-decoration: none;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.project-link:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.project-link:hover:after {
+    width: 100%;
+}
+
+/* Publications Section */
+.publications-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.publication-item {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    position: relative;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: slideUpFade 0.6s ease forwards;
+    border-left: 4px solid var(--primary-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.publication-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.publication-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--primary-color);
+    color: white;
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.publication-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.publication-authors {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.publication-venue {
+    font-size: 0.9rem;
+    font-style: italic;
+    color: #888;
+    margin-bottom: 1rem;
+}
+
+.publication-abstract {
+    background: #f5f5f5;
+    padding: 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.publication-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.button-outline {
+    background: none;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.button-outline:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+.pdf-button {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.pdf-button:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 87, 34, 0.2);
+}
+
+/* PDF Modal */
+.pdf-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.pdf-modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+.pdf-modal-content {
+    width: 85%;
+    height: 85%;
+    background: white;
+    border-radius: 8px;
+    position: relative;
+    padding: 1rem;
+}
+
+.close-pdf {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+#pdf-frame {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.research-actions {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+}
+
+/* Computer vision animation elements */
+.cv-animation-element {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.object-detection-box {
+    border: 2px solid var(--primary-color);
+    position: absolute;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.object-detection-label {
+    background: var(--primary-color);
+    color: white;
+    font-size: 0.7rem;
+    padding: 2px 5px;
+    position: absolute;
+    top: -18px;
+    left: 0;
+}
+
+/* Animate-on-scroll elements */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.animate-on-scroll.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Cursor effects */
+.cursor {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease;
+    mix-blend-mode: difference;
+}
+
+.cursor-follower {
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid var(--primary-color);
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease;
+    mix-blend-mode: difference;
+}
+
+/* Spec analyzer visualization */
+.spec-analyzer {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    background: black;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 2rem 0;
+}
+
+.spec-bar {
+    position: absolute;
+    bottom: 0;
+    background: linear-gradient(to top, var(--primary-color), var(--accent-color));
+    width: 5px;
+    margin: 0 2px;
+    transform-origin: bottom;
+    transition: height 0.2s ease;
+}
+
+/* Fix for the tagline */
+.animated-tagline {
+    font-size: 1.2rem;
+    margin: 1rem 0;
+    min-height: 30px; /* Ensure height stability during animations */
+    color: #fff;
+    font-weight: 500;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+/* Additional animation classes */
+.animate-rotateIn {
+    animation: rotateIn 0.8s ease-out forwards;
+    opacity: 0;
+}
+
+/* Section entrance animations */
+.fade-in-section {
+    opacity: 0.1; /* Change from 0 to 0.1 so content is slightly visible by default */
+    transform: translateY(10vh); /* Reduced from 20vh */
+    visibility: visible; /* Changed from hidden to ensure content is accessible */
+    transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+    will-change: opacity, visibility;
+}
+
+.fade-in-section.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+/* Add fallback for no JS environments */
+.no-js .fade-in-section {
+    opacity: 1;
+    transform: none;
+    visibility: visible;
+}
+
+/* Add class to hide sections */
+.hidden {
+    display: none !important;
 }
