@@ -618,3 +618,14 @@ window.addEventListener('resize', function() {
         closeNav();
     }
 });
+
+// Update copyright year to current year in real-time
+function updateYear() {
+    const yearElement = document.getElementById('currentYear');
+    if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+    }
+}
+
+// Initialize year on page load
+updateYear();
