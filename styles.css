@@ -20,11 +20,22 @@ body, h1, h2, p, ul, li {
     box-sizing: border-box;
 }
 
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+img, video, canvas, svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     background-color: var(--bg-color);
     color: var(--text-color);
+    overflow-x: hidden;
     /* Removed direct color and red border */
 }
 
@@ -661,6 +672,64 @@ section:hover .section-title::before {
     box-shadow: 0 5px 15px rgba(255, 87, 34, 0.2);
 }
 
+/* About Section Layout */
+.about-content {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+.about-text {
+    line-height: 1.8;
+}
+
+.about-text .lead {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.about-text p {
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+.stat-item {
+    background: linear-gradient(135deg, rgba(255, 87, 34, 0.05), rgba(255, 152, 0, 0.05));
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.stat-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(255, 87, 34, 0.15);
+    border-color: var(--primary-color);
+}
+
+.stat-item h3 {
+    color: var(--primary-color);
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.stat-item p {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin: 0.25rem 0;
+}
+
 /* Add new styles for Projects, Publications and PDF viewer */
 
 /* Research animation */
@@ -1111,4 +1180,406 @@ section:hover .section-title::before {
 /* Add class to hide sections */
 .hidden {
     display: none !important;
+}
+
+/* ===================================
+   RESPONSIVE DESIGN
+   =================================== */
+
+/* Mobile Navigation Toggle */
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1001;
+}
+
+.nav-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--primary-color);
+    margin: 5px 0;
+    transition: 0.3s;
+}
+
+.nav-toggle.active span:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-toggle.active span:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* Tablet and smaller devices (max-width: 1024px) */
+@media screen and (max-width: 1024px) {
+    .container {
+        width: 90%;
+    }
+
+    header h1 {
+        font-size: 2.2em;
+    }
+
+    header p {
+        font-size: 1.1em;
+    }
+
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .stats {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .projects-grid,
+    .publications-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .research-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Tablet portrait and smaller (max-width: 768px) */
+@media screen and (max-width: 768px) {
+    :root {
+        --section-padding: 4rem 0;
+    }
+
+    /* Mobile Navigation */
+    .nav-toggle {
+        display: block;
+    }
+
+    .main-nav ul {
+        position: fixed;
+        top: var(--nav-height);
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - var(--nav-height));
+        background-color: var(--nav-background);
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 2rem 0;
+        transition: left 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        z-index: 999;
+    }
+
+    .main-nav ul.active {
+        left: 0;
+    }
+
+    .main-nav ul li {
+        margin: 0;
+        width: 100%;
+        text-align: center;
+        padding: 1rem 0;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .main-nav ul li a {
+        display: block;
+        padding: 0.5rem 1rem;
+        font-size: 1.1rem;
+    }
+
+    .container {
+        width: 95%;
+    }
+
+    header h1 {
+        font-size: 1.8em;
+    }
+
+    header p,
+    .animated-tagline {
+        font-size: 1em;
+    }
+
+    .profile-image {
+        width: 150px;
+        height: 150px;
+    }
+
+    .hero-content {
+        padding: 2rem 1rem;
+    }
+
+    .social-links a {
+        font-size: 1.5rem;
+        margin: 0 0.8rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .stat-item {
+        padding: 1.5rem;
+    }
+
+    .projects-grid,
+    .publications-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .project-card,
+    .publication-card {
+        padding: 1.5rem;
+    }
+
+    .timeline::before {
+        left: 30px;
+    }
+
+    .timeline-item {
+        padding-left: 60px;
+    }
+
+    .timeline-item::before {
+        left: 23px;
+    }
+
+    .key-interests ul {
+        grid-template-columns: 1fr;
+    }
+
+    .research-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .research-meta {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tech-stack {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    section {
+        padding: 15px;
+    }
+}
+
+/* Mobile devices (max-width: 480px) */
+@media screen and (max-width: 480px) {
+    :root {
+        --section-padding: 3rem 0;
+        --nav-height: 55px;
+    }
+
+    header h1 {
+        font-size: 1.5em;
+    }
+
+    header p,
+    .animated-tagline {
+        font-size: 0.9em;
+    }
+
+    .profile-image {
+        width: 120px;
+        height: 120px;
+        border: 3px solid #fff;
+    }
+
+    .institution p {
+        font-size: 0.9em;
+    }
+
+    .social-links a {
+        font-size: 1.3rem;
+        margin: 0 0.5rem;
+    }
+
+    .section-title {
+        font-size: 1.6rem;
+    }
+
+    .about-text .lead {
+        font-size: 1rem;
+    }
+
+    .about-text p {
+        font-size: 0.95rem;
+    }
+
+    .key-interests h3 {
+        font-size: 1.2rem;
+    }
+
+    .stat-item h3 {
+        font-size: 1.1rem;
+    }
+
+    .stat-item p {
+        font-size: 1.3rem;
+    }
+
+    .project-card h3,
+    .publication-card h3 {
+        font-size: 1.3rem;
+    }
+
+    .tech-stack {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+
+    .tech-tag {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+    }
+
+    .btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    .contact ul li {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+    }
+
+    .contact li i {
+        font-size: 1.3rem;
+    }
+
+    section {
+        padding: 12px;
+        margin: 15px 0;
+    }
+
+    .container {
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    /* Improve readability on small screens */
+    body {
+        font-size: 14px;
+    }
+
+    .research-header h3 {
+        font-size: 1.4rem;
+    }
+
+    .feature-item {
+        padding: 1rem;
+    }
+
+    .spec-analyzer {
+        height: 100px;
+    }
+
+    .data-animation-container {
+        height: 200px;
+    }
+}
+
+/* Very small devices (max-width: 320px) */
+@media screen and (max-width: 320px) {
+    header h1 {
+        font-size: 1.3em;
+    }
+
+    .profile-image {
+        width: 100px;
+        height: 100px;
+    }
+
+    .section-title {
+        font-size: 1.4rem;
+    }
+
+    .social-links a {
+        font-size: 1.2rem;
+        margin: 0 0.4rem;
+    }
+
+    body {
+        font-size: 13px;
+    }
+}
+
+/* Landscape orientation for mobile devices */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    .hero {
+        padding: 2rem 0;
+    }
+
+    .profile-image {
+        width: 100px;
+        height: 100px;
+    }
+
+    header h1 {
+        font-size: 1.5em;
+    }
+
+    .data-animation-container {
+        height: 150px;
+    }
+}
+
+/* Large screens optimization (min-width: 1400px) */
+@media screen and (min-width: 1400px) {
+    .container {
+        max-width: 1200px;
+    }
+
+    .projects-grid,
+    .publications-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Print styles */
+@media print {
+    .main-nav,
+    .social-links,
+    .data-animation-container,
+    .spec-analyzer,
+    footer {
+        display: none;
+    }
+
+    body {
+        background: white;
+        color: black;
+    }
+
+    section {
+        page-break-inside: avoid;
+        box-shadow: none;
+    }
+
+    a {
+        text-decoration: underline;
+        color: black;
+    }
 }

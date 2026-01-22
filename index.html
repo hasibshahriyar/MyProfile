@@ -20,13 +20,18 @@
             <div class="logo">
                 <span class="logo-text">SH</span>
             </div>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#research">Research</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#publications">Publications</a></li>
-                <li><a href="#contact">Contact</a></li>
+            <button class="nav-toggle" aria-label="Toggle navigation" onclick="toggleNav()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="navMenu">
+                <li><a href="#home" onclick="closeNav()">Home</a></li>
+                <li><a href="#about" onclick="closeNav()">About</a></li>
+                <li><a href="#research" onclick="closeNav()">Research</a></li>
+                <li><a href="#projects" onclick="closeNav()">Projects</a></li>
+                <li><a href="#publications" onclick="closeNav()">Publications</a></li>
+                <li><a href="#contact" onclick="closeNav()">Contact</a></li>
             </ul>
         </div>
     </nav>

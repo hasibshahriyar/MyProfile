@@ -577,3 +577,44 @@ function createAudioVisualization(container) {
     
     animateBars();
 }
+
+// Mobile Navigation Toggle Functions
+function toggleNav() {
+    const navMenu = document.getElementById('navMenu');
+    const navToggle = document.querySelector('.nav-toggle');
+    
+    if (navMenu) {
+        navMenu.classList.toggle('active');
+        navToggle.classList.toggle('active');
+    }
+}
+
+function closeNav() {
+    const navMenu = document.getElementById('navMenu');
+    const navToggle = document.querySelector('.nav-toggle');
+    
+    if (navMenu) {
+        navMenu.classList.remove('active');
+        navToggle.classList.remove('active');
+    }
+}
+
+// Close mobile nav when clicking outside
+document.addEventListener('click', function(event) {
+    const navMenu = document.getElementById('navMenu');
+    const navToggle = document.querySelector('.nav-toggle');
+    const mainNav = document.querySelector('.main-nav');
+    
+    if (navMenu && navMenu.classList.contains('active')) {
+        if (!mainNav.contains(event.target)) {
+            closeNav();
+        }
+    }
+});
+
+// Close mobile nav on window resize if desktop view
+window.addEventListener('resize', function() {
+    if (window.innerWidth > 768) {
+        closeNav();
+    }
+});
